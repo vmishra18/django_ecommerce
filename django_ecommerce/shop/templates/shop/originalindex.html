@@ -1,0 +1,150 @@
+{% extends 'shop/layout.html' %}
+
+{% block title %} Home  {% endblock %}
+
+    
+    {% block css  %}
+        
+        <!-- body .carousel-control-indicator li {
+            background-color: blue;
+        } -->
+
+        <!-- body .carousel-control-prev-icon body .carousel-control-next-icon {
+            background-color: blue;
+        } -->
+
+        body .no-padding {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .carousel-control-prev-icon {
+            background: black no-repeat center center;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3e%3c/svg%3e");
+        }
+
+        .carousel-control-next-icon {
+            background: black no-repeat center center;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3e%3c/svg%3e");
+
+        }
+
+        <!-- .carousel-control-prev,
+        .carousel-control-next{
+          position:absolute;
+          top:0;
+          bottom:0;
+          z-index:1;
+          display:flex;
+          align-item: center;
+          justify-content:center;
+        } -->
+        
+        body .carousel-indicators{
+        bottom:0;
+        }
+
+        .carousel-indicators .active{
+        background-color: blue;
+        }
+        <!-- footer css -->
+       
+ {% endblock %}
+    
+
+  {% block body %}
+
+    {%   load static   %}
+
+    <div class="container">
+      <!-- slide show start here -->
+
+      {% for product, range in allprods %}
+
+      <h4>Electronic</h4>
+
+      <div id="#demo{{forloop.counter}}" class="carousel slide" data-bs-ride="carousel">
+
+        <div class="carousel-indicators ">
+          
+          <button type="button" data-bs-target="#demo{{forloop.counter}}" data-bs-slide-to="0" class="active" aria-current="true" ></button>
+          
+          {% for i in range %}
+
+          <button type="button" data-bs-target="#demo{{forloop.parentloop.counter}}" data-bs-slide-to="{{ i }}" ></button>
+          <!-- <button type="button" data-bs-target="#demo{{forloop.parentloop.counter}}" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
+       
+          {% endfor %}
+        </div>
+
+        <div class="carousel-inner no-padding">
+
+          <div class="carousel-item active">
+            <div class="row">
+
+              <!-- <div class="col-sm-3 col-md-3">
+                <div class="card">
+                  <img src="{% static 'shop/prod.jpg' %}" class="card-img-top img-thumbnail" alt="..." style="width:200px;height:120px;" >
+                  <div class="card-body">
+                    <h5 class="card-title">{{product.0.product_name}}</h5>
+                    <p class="card-text">{{product.0.desc}}</p>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                  </div>
+                </div>
+              </div> -->
+
+              {% for i in product|slice:"1:" %}
+              <div class="col-sm-3 col-md-3">
+                <div class="card">
+                  <img src=" /media/{{i.image}} " class="card-img-top img-thumbnail" alt="..." style="width:200px;height:120px;" >
+                  <div class="card-body">
+                    <h5 class="card-title">{{i.product_name}}</h5>
+                    <p class="card-text">{{i.desc}}</p>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                  </div>
+                </div>
+              </div>
+              
+              {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
+
+            </div> 
+          </div>
+            <div class="carousel-item">
+              <div class="row">
+
+              {% endif %}
+
+              {% endfor %}
+              </div>
+            </div>
+            
+          <!-- </div> -->    
+        </div>
+        
+          <button class="carousel-control-prev" type="button" data-bs-target="#demo{{forloop.counter}}"  data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#demo{{forloop.counter}}"  data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+          
+      </div>
+
+      <!-- <button class="carousel-control-prev" type="button" data-bs-target="#demo{{forloop.counter}}"  data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#demo{{forloop.counter}}"  data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button> -->
+      {% endfor %}
+
+    </div>
+  
+
+  {% endblock %}
+ 
+

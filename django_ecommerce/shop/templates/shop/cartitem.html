@@ -1,0 +1,50 @@
+{% extends 'shop/layout.html' %}
+
+{% block title %} Cart Item  {% endblock %}
+
+{% block body %} 
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <img src=" /media/{{product.image}} " class="img-fluid" alt="">									
+        
+            <div class="row">
+                    <button class="btn btn-primary btn-sm mx-2" >Buy Now</button>
+                    <button class="btn btn-primary btn-sm mx-2" >Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <h5>{{product.product_name}}</h5>
+            <p> {{product.cateogry}} </p>
+            <p> {{product.sucateogry}} </p>
+            <p> {{product.desc}} </p>
+            <p> <b>Rs. {{product.price}} </b></p>
+
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
